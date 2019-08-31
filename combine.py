@@ -10,7 +10,7 @@ app = ClarifaiApp(api_key='8347755eb1694ac8a447cdec8261a9db')
 model = app.public_models.general_model
 
 # folder containing multiple image files
-fileFolder = glob.glob('./street/*.*')
+fileFolder = glob.glob('./images/*.jpg')
 
 
 # dictionary to keep file path and keywords
@@ -55,6 +55,43 @@ for key, value in data.items():
          info.save()
 
 #info.save()
+
+
+
+
+def travel():
+        model = app.public_models.travel_model
+        for key, value in data.items():
+                print(key)
+                response = model.predict_by_filename(key)
+                for r in response['outputs'][0]['data']['concepts']:
+                        data[key].append(r['name'])
+                        print(r['name']) # for each element in response print key-words
+        for key, value in data.items():
+                info = IPTCInfo(key)
+                for item in value:
+                        newValue = item
+                        info['keywords'].append(newValue)
+        info.save()
+
+#travel()
+
+# # take the values in dict, match key value to a file path and append IPTC keywords to file
+# for key, value in data.items():
+#         #print(os.path.basename(key))
+#          info = IPTCInfo(key)
+#          for item in value:
+#                  newValue = item
+#                  info['keywords'].append(newValue)
+#          info.save()
+
+
+# for key, value in data.items():
+#         print(key)
+#         response = model.predict_by_filename(key)
+#         for r in response['outputs'][0]['data']['concepts']:
+#                 data[key].append(r['name'])
+#                 print(r['name']) # for each element in response print key-words
 
 
 
