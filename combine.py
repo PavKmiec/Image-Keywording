@@ -48,7 +48,7 @@ for key, value in data.items():
 # take the values in dict, match key value to a file path and append IPTC keywords to file
 for key, value in data.items():
         #print(os.path.basename(key))
-         info = IPTCInfo(os.path.basename(key))
+         info = IPTCInfo(key)
          for item in value:
                  newValue = item
                  info['keywords'].append(newValue)
