@@ -30,8 +30,10 @@ def resize(photo):
         img = Image.open(photo)
         wpercent = (basewidth/float(img.size[0]))
         hsize = int((float(img.size[1])*float(wpercent)))
-        img = img.resize((basewidth,hsize), Image.ANTIALIAS)
-        return img # TODO return image path instaed of image !!
+        #img = img.resize((basewidth,hsize), Image.ANTIALIAS)
+        out = img.resize((basewidth,hsize), Image.ANTIALIAS)
+        out.save()
+        return img.filename # TODO return image path instaed of image !!
 
 print('---------------------------------------------')
 
@@ -44,9 +46,6 @@ for key, value in data.items():
                 data[key].append(r['name'])
                 print(r['name']) # for each element in response print key-words
 
-# # check data dict
-# for key, value in data.items():
-#     print(key, value)
 
 
 # take the values in dict, match key value to a file path and append IPTC keywords to file
@@ -57,55 +56,3 @@ for key, value in data.items():
                  newValue = item
                  info['keywords'].append(newValue)
          info.save()
-
-#info.save()
-
-
-
-
-# def travel():
-#         model = app.public_models.travel_model
-#         for key, value in data.items():
-#                 print(key)
-#                 response = model.predict_by_filename(key)
-#                 for r in response['outputs'][0]['data']['concepts']:
-#                         data[key].append(r['name'])
-#                         print(r['name']) # for each element in response print key-words
-#         for key, value in data.items():
-#                 info = IPTCInfo(key)
-#                 for item in value:
-#                         newValue = item
-#                         info['keywords'].append(newValue)
-#         info.save()
-
-#travel()
-
-# # take the values in dict, match key value to a file path and append IPTC keywords to file
-# for key, value in data.items():
-#         #print(os.path.basename(key))
-#          info = IPTCInfo(key)
-#          for item in value:
-#                  newValue = item
-#                  info['keywords'].append(newValue)
-#          info.save()
-
-
-# for key, value in data.items():
-#         print(key)
-#         response = model.predict_by_filename(key)
-#         for r in response['outputs'][0]['data']['concepts']:
-#                 data[key].append(r['name'])
-#                 print(r['name']) # for each element in response print key-words
-
-
-
-
-
-# newKeywords = {'key2', 'key2', 'key3'}
-
-# for key in newKeywords:
-# 	info['keywords'].append(key)
-
-
-# info.save()
-# print(info['keywords'])
