@@ -21,9 +21,9 @@ To get started you need:
  - save the file
 
 3. Install Libraries:
- pip3 install clarifai
- pip3 install iptcinfo3
- pip3 install pillow
+ - pip3 install clarifai
+ - pip3 install iptcinfo3
+ - pip3 install pillow
  
  
  have fun...
