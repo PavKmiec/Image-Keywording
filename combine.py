@@ -4,7 +4,6 @@ from PIL import Image
 import glob
 from iptcinfo3 import IPTCInfo
 import cred
-import shutil
 
 
 def resize(photo):
@@ -59,7 +58,7 @@ for key, value in data.items():
     response = model.predict_by_filename(new_key)
 
     # removing the resized image after it's being processed.
-    shutil.rmtree(new_key)
+    os.remove(new_key)
 
     # append generated keywords in dictionary
     for r in response['outputs'][0]['data']['concepts']:
